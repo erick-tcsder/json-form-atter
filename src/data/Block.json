@@ -1,0 +1,31 @@
+{
+  "_id": "1",
+  "name": "Test Block",
+  "type": "BLOCK_TEST",
+  "validation": [
+    {
+      "type": "VALIDATION_REQUIRED",
+      "msg": "This field is required"
+    },
+    {
+      "type": "VALIDATION_STRING",
+      "msg": "This field must be a string"
+    }
+  ],
+  "fields": [
+    {
+      "name": null,
+      "fields": null,
+      "validation": null,
+      "type": "BLOCK_TEST_CHILD_1",
+      "_id": "1"
+    },
+    {
+      "name": null,
+      "fields": null,
+      "validation": null,
+      "type": "BLOCK_TEST_CHILD_2",
+      "_id": "1"
+    }
+  ]
+}

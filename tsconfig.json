@@ -4,8 +4,17 @@
     "module": "commonjs",
     "declaration": true,
     "outDir": "./lib",
-    "strict": true
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/__tests__/*","**/*.test.ts","**/*.spec.ts","**/__mocks__/*"]
+  "exclude": ["node_modules", "**/__tests__/*","**/*.test.ts","**/*.spec.ts","**/__mocks__/*","**/*.json"]
 }
