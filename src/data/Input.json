@@ -1,0 +1,23 @@
+{
+  "_id": "1",
+  "name": "test",
+  "type": "INPUT_TEST",
+  "validation":[
+    {
+      "type": "VALIDATION_STRING",
+      "msg": "Should be a string"
+    },
+    {
+      "type": "VALIDATION_EMAIL",
+      "msg": "Should be an email"
+    }
+  ],
+  "options":{
+    "defaultValue": "testing default",
+    "placeholder": "testing placeholder",
+    "label": "testing label",
+    "helperText": "test helper text"
+  },
+  "excludeFromValidation": false,
+  "FRAGMENT_TYPE": "INPUT"
+}
