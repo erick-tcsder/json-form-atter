@@ -2,14 +2,14 @@
   "_id": "1",
   "name": "Test Block",
   "type": "BLOCK_TEST",
-  "validation": [
+  "FRAGMENT_TYPE": "BLOCK",
+  "validation":[
     {
-      "type": "VALIDATION_REQUIRED",
-      "msg": "This field is required"
-    },
-    {
-      "type": "VALIDATION_STRING",
-      "msg": "This field must be a string"
+      "type": "VALIDATION_REF",
+      "ref": "BLOCK_TEST_CHILD_1",
+      "value": true,
+      "then": [],
+      "else": []
     }
   ],
   "fields": [
@@ -18,14 +18,17 @@
       "fields": null,
       "validation": null,
       "type": "BLOCK_TEST_CHILD_1",
-      "_id": "1"
+      "_id": "1",
+      "FRAGMENT_TYPE": "BLOCK"
     },
     {
-      "name": null,
-      "fields": null,
+      "name": "INPUT_TEST_CHILD_2",
+      "options": null,
+      "type": "INTPUT_TEST",
       "validation": null,
-      "type": "BLOCK_TEST_CHILD_2",
-      "_id": "1"
+      "FRAGMENT_TYPE": "INPUT",
+      "_id": "1",
+      "excludeFromValidation": false
     }
   ]
 }

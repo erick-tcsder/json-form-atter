@@ -1,6 +1,9 @@
 
 
 interface BaseMessageValidation {
+  /**
+   * @default ""
+   */
   msg: string;
 }
 
@@ -8,14 +11,17 @@ interface SingleValueValidation<T> extends BaseMessageValidation {
   value: T;
 }
 
-interface RefValidation extends BaseMessageValidation {
+interface RefValidation {
   ref: string;
-  value: string;
+  value: any;
   then?: Validation[];
   else?: Validation[];
 }
 
-export type Validation = 
+export type BlockValidation = 
+| ({type: "VALIDATION_REF"} & RefValidation)
+
+export type InputValidation = 
 | ({type: "VALIDATION_REQUIRED"} & BaseMessageValidation)
 | ({type: "VALIDATION_MIN"} & SingleValueValidation<number>)
 | ({type: "VALIDATION_MAX"} & SingleValueValidation<number>)
@@ -26,3 +32,6 @@ export type Validation =
 | ({type: "VALIDATION_EMAIL"} & BaseMessageValidation)
 | ({type: "VALIDATION_NUMBER"} & BaseMessageValidation)
 | ({type: "VALIDATION_REGEXP"} & SingleValueValidation<string>)
+| ({type: "VALIDATION_NULLABLE"} & BaseMessageValidation)
+
+export type Validation = InputValidation | BlockValidation;

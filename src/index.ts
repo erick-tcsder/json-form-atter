@@ -1,6 +1,6 @@
-import {Block} from './types/Blocks'
+import {Block} from './types/Block'
 import {Fragment} from './types/Fragment'
-import type {Validation} from './types/Validation'
+import type {BlockValidation} from './types/Validation'
 
-export type {Validation}
+export type {BlockValidation as Validation}
 export {Block,Fragment}
