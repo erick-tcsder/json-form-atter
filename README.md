@@ -1,1 +1,1 @@
-# JSON-From-atter module
+# JSON-Schema-From-atter module
