@@ -1,6 +1,6 @@
-import { Fragment } from "./Fragment";
-import { FromJSONParser } from "./FromJSONParser";
-import { InputValidation } from "./Validation";
+import { Fragment } from './Fragment';
+import { FromJSONParser } from './FromJSONParser';
+import { InputValidation } from './Validation';
 export declare class Input extends Fragment {
     type: string;
     validation?: InputValidation[];

@@ -1,5 +1,5 @@
-import { Fragment } from "./Fragment";
-import { BlockValidation } from "./Validation";
+import { Fragment } from './Fragment';
+import { BlockValidation } from './Validation';
 export declare class Block extends Fragment {
     type: string;
     fields?: Fragment[];

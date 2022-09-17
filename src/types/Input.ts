@@ -1,9 +1,9 @@
-import { Fragment } from "./Fragment";
-import { defaultFromJSONParser, FromJSONParser } from "./FromJSONParser";
-import { InputValidation } from "./Validation";
+import { Fragment } from './Fragment';
+import { defaultFromJSONParser, FromJSONParser } from './FromJSONParser';
+import { InputValidation } from './Validation';
 
-export class Input extends Fragment{
-  public override FRAGMENT_TYPE = "INPUT"
+export class Input extends Fragment {
+  public override FRAGMENT_TYPE = 'INPUT';
   constructor(
     public type: string,
     /**
@@ -11,11 +11,11 @@ export class Input extends Fragment{
      */
     name: string,
     public validation?: InputValidation[],
-    public options?: Record<string,any>,
+    public options?: Record<string, any>,
     id?: string,
-    public excludeFromValidation: boolean = false
+    public excludeFromValidation: boolean = false,
   ) {
-    super(name,id);
+    super(name, id);
   }
 
   override toObject(): Record<string, any> {
@@ -26,11 +26,11 @@ export class Input extends Fragment{
       validation: this.validation ?? null,
       options: this.options ?? null,
       excludeFromValidation: this.excludeFromValidation,
-      FRAGMENT_TYPE: this.FRAGMENT_TYPE
+      FRAGMENT_TYPE: this.FRAGMENT_TYPE,
     };
   }
 
-  static override fromJSON(obj: Record<string, any>,fromJSONParser=defaultFromJSONParser): Input {
-    return fromJSONParser['INPUT'](obj) as Input
+  static override fromJSON(obj: Record<string, any>, fromJSONParser = defaultFromJSONParser): Input {
+    return fromJSONParser['INPUT'](obj) as Input;
   }
 }
