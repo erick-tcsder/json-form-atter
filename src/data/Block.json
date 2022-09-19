@@ -27,6 +27,7 @@
       "type": "INTPUT_TEST",
       "validation": null,
       "FRAGMENT_TYPE": "INPUT",
+      "dataType": "string",
       "_id": "1",
       "excludeFromValidation": false
     }

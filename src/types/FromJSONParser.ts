@@ -1,11 +1,12 @@
-import { Block } from './Block';
+import { JsonObject } from 'type-fest';
+import { Block, BlockObject } from './Block';
 import { Fragment } from './Fragment';
-import { Input } from './Input';
+import { Input, InputObject } from './Input';
 
-export type FromJSONParser = Record<string, (obj: Record<string, any>, fromJSONParser?: FromJSONParser) => Fragment>;
+export type FromJSONParser = Record<string, (obj: JsonObject, fromJSONParser?: FromJSONParser) => Fragment>;
 
 export const defaultFromJSONParser: FromJSONParser = {
-  BLOCK: (json) =>
+  BLOCK: (json : BlockObject) =>
     new Block(
       json['type'],
       json['name'],
@@ -15,13 +16,14 @@ export const defaultFromJSONParser: FromJSONParser = {
       json['validation'],
       json['_id'],
     ),
-  INPUT: (json) => {
+  INPUT: (json : InputObject) => {
     if (!json['name']) throw new Error('Input name is required');
     if (!json['type']) throw new Error('Input type is required');
 
     return new Input(
       json['type'],
       json['name'],
+      json['dataType'],
       json['validation'],
       json['options'],
       json['_id'],

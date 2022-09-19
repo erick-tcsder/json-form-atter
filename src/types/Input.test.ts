@@ -8,10 +8,6 @@ jest.mock('uuid', () => ({
 
 const validation: InputValidation[] = [
   {
-    type: 'VALIDATION_STRING',
-    msg: 'Should be a string',
-  },
-  {
     type: 'VALIDATION_EMAIL',
     msg: 'Should be an email',
   },
@@ -25,13 +21,13 @@ const options = {
 
 describe('Testing Input class', () => {
   it('should be able to instantiate', () => {
-    const input = new Input('INPUT_TEST', 'test');
+    const input = new Input('INPUT_TEST', 'test','string');
     expect(input).toBeDefined();
     expect(input).toBeInstanceOf(Input);
   });
 
   it('should have accessible props', () => {
-    const input = new Input('INPUT_TEST', 'test', validation, options, '123');
+    const input = new Input('INPUT_TEST', 'test','string', validation, options, '123');
     expect(input.name).toBe('test');
     expect(input.type).toBe('INPUT_TEST');
     expect(input.validation).toStrictEqual(validation);
@@ -41,7 +37,7 @@ describe('Testing Input class', () => {
   });
 
   it('should be able to convert to object', () => {
-    const input = new Input('INPUT_TEST', 'test', validation, options);
+    const input = new Input('INPUT_TEST', 'test', 'string', validation, options);
 
     expect(input.toObject()).toStrictEqual(inputFixture);
   });

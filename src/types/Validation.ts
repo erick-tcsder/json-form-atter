@@ -1,34 +1,33 @@
-interface BaseMessageValidation {
-  /**
-   * @default ""
-   */
-  msg: string;
+import { JsonObject, JsonValue } from "type-fest";
+
+type BaseMessageValidation = {
+  msg: string
 }
 
-interface SingleValueValidation<T> extends BaseMessageValidation {
-  value: T;
-}
+type SingleValueValidation = (BaseMessageValidation&{
+  value: JsonValue;
+})
 
-interface RefValidation {
+type RefValidation = {
   ref: string;
   value: any;
-  then?: Validation[];
-  else?: Validation[];
+  then: Validation[];
+  else: Validation[];
 }
 
-export type BlockValidation = { type: 'VALIDATION_REF' } & RefValidation;
+export type BlockValidation = 
+  | ({ type: 'VALIDATION_REF' } & RefValidation)
+  | ({ type: 'VALIDATION_HIDDEN' } & {});
 
 export type InputValidation =
   | ({ type: 'VALIDATION_REQUIRED' } & BaseMessageValidation)
-  | ({ type: 'VALIDATION_MIN' } & SingleValueValidation<number>)
-  | ({ type: 'VALIDATION_MAX' } & SingleValueValidation<number>)
+  | ({ type: 'VALIDATION_MIN' } & SingleValueValidation)
+  | ({ type: 'VALIDATION_MAX' } & SingleValueValidation)
   | ({ type: 'VALIDATION_REF' } & RefValidation)
-  | ({ type: 'VALIDATION_DATE_AFTER' } & SingleValueValidation<string>)
-  | ({ type: 'VALIDATION_DATE_BEFORE' } & SingleValueValidation<string>)
-  | ({ type: 'VALIDATION_STRING' } & BaseMessageValidation)
+  | ({ type: 'VALIDATION_DATE_AFTER' } & SingleValueValidation)
+  | ({ type: 'VALIDATION_DATE_BEFORE' } & SingleValueValidation)
   | ({ type: 'VALIDATION_EMAIL' } & BaseMessageValidation)
-  | ({ type: 'VALIDATION_NUMBER' } & BaseMessageValidation)
-  | ({ type: 'VALIDATION_REGEXP' } & SingleValueValidation<string>)
-  | ({ type: 'VALIDATION_NULLABLE' } & BaseMessageValidation);
+  | ({ type: 'VALIDATION_REGEXP' } & SingleValueValidation)
+  | ({ type: 'VALIDATION_NULLABLE' } & BaseMessageValidation)
 
 export type Validation = InputValidation | BlockValidation;
