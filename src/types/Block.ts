@@ -1,6 +1,16 @@
+import { JsonObject } from 'type-fest';
 import { Fragment } from './Fragment';
 import { defaultFromJSONParser } from './FromJSONParser';
 import { BlockValidation } from './Validation';
+
+export type BlockObject = {
+  _id: string;
+  type: string;
+  name: string;
+  fields?: JsonObject[];
+  validation?: BlockValidation[];
+  FRAGMENT_TYPE: 'BLOCK';
+}
 
 export class Block extends Fragment {
   public override FRAGMENT_TYPE = 'BLOCK';
@@ -14,7 +24,7 @@ export class Block extends Fragment {
     super(name, id);
   }
 
-  override toObject(): Record<string, any> {
+  override toObject(): JsonObject {
     return {
       _id: this._id,
       type: this.type,
@@ -25,7 +35,7 @@ export class Block extends Fragment {
     };
   }
 
-  static override fromJSON(json: Record<string, any>, fromJSONParser = defaultFromJSONParser): Block {
+  static override fromJSON(json: JsonObject, fromJSONParser = defaultFromJSONParser): Block {
     return fromJSONParser['BLOCK'](json) as Block;
   }
 }

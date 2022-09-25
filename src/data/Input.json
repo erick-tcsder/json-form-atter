@@ -4,14 +4,11 @@
   "type": "INPUT_TEST",
   "validation":[
     {
-      "type": "VALIDATION_STRING",
-      "msg": "Should be a string"
-    },
-    {
       "type": "VALIDATION_EMAIL",
       "msg": "Should be an email"
     }
   ],
+  "dataType": "string",
   "options":{
     "defaultValue": "testing default",
     "placeholder": "testing placeholder",

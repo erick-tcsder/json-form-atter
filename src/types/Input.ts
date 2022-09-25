@@ -1,6 +1,18 @@
+import { JsonArray, JsonObject } from 'type-fest';
 import { Fragment } from './Fragment';
 import { defaultFromJSONParser, FromJSONParser } from './FromJSONParser';
 import { InputValidation } from './Validation';
+
+export type InputObject = {
+  _id: string;
+  type: string;
+  name: string;
+  dataType: 'string' | 'number' | 'boolean' | 'date' | 'array';
+  validation?: InputValidation[];
+  options?: JsonObject;
+  excludeFromValidation?: boolean;
+  FRAGMENT_TYPE: 'INPUT';
+}
 
 export class Input extends Fragment {
   public override FRAGMENT_TYPE = 'INPUT';
@@ -10,6 +22,7 @@ export class Input extends Fragment {
      * Name will be used as the key in the input object
      */
     name: string,
+    public dataType: 'string' | 'number' | 'boolean' | 'date' | 'array',
     public validation?: InputValidation[],
     public options?: Record<string, any>,
     id?: string,
@@ -18,11 +31,12 @@ export class Input extends Fragment {
     super(name, id);
   }
 
-  override toObject(): Record<string, any> {
+  override toObject(): JsonObject {
     return {
       _id: this._id,
       name: this.name,
       type: this.type,
+      dataType: this.dataType,
       validation: this.validation ?? null,
       options: this.options ?? null,
       excludeFromValidation: this.excludeFromValidation,
@@ -30,7 +44,7 @@ export class Input extends Fragment {
     };
   }
 
-  static override fromJSON(obj: Record<string, any>, fromJSONParser = defaultFromJSONParser): Input {
+  static override fromJSON(obj: JsonObject, fromJSONParser = defaultFromJSONParser): Input {
     return fromJSONParser['INPUT'](obj) as Input;
   }
 }
