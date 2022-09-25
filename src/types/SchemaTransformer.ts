@@ -3,51 +3,59 @@ import { InputValidation } from "./Validation";
 import * as yup from 'yup'
 import { Input } from './Input';
 
-const defaultTransformer : Record<string,(validation:InputValidation,current_schema:AnySchema)=>AnySchema> = {
+export const defaultTransformer : Record<string,(validation:InputValidation,current_schema:AnySchema)=>AnySchema> = {
   'VALIDATION_REQUIRED': (validation,current_schema) => 
     {
-      if(validation.type !== 'VALIDATION_REQUIRED') return current_schema;
-      return current_schema.required(validation.msg)
+      if(validation.type === 'VALIDATION_REQUIRED'){
+        return current_schema.required(validation.msg)
+      } else { return current_schema;}
     },
   'VALIDATION_MIN': (validation,current_schema) =>
     {
-      if(validation.type !== 'VALIDATION_MIN') return current_schema;
-      return (current_schema as NumberSchema).min(validation.value as number,validation.msg)
+      if(validation.type === 'VALIDATION_MIN'){
+        return (current_schema as NumberSchema).min(validation.value as number,validation.msg)
+      } else { return current_schema;}
     },
   'VALIDATION_MAX': (validation,current_schema) =>
     {
-      if(validation.type !== 'VALIDATION_MAX') return current_schema;
-      return (current_schema as NumberSchema).max(validation.value as number,validation.msg)
+      if(validation.type === 'VALIDATION_MAX'){
+        return (current_schema as NumberSchema).max(validation.value as number,validation.msg)
+      } else { return current_schema;}
     },
   'VALIDATION_DATE_AFTER': (validation,current_schema) =>
     {
-      if(validation.type !== 'VALIDATION_DATE_AFTER') return current_schema;
-      return (current_schema as DateSchema).min(validation.value as string,validation.msg)
+      if(validation.type === 'VALIDATION_DATE_AFTER'){
+        return (current_schema as DateSchema).min(validation.value as string,validation.msg)
+      } else { return current_schema;}
     },
   'VALIDATION_DATE_BEFORE': (validation,current_schema) =>
     {
-      if(validation.type !== 'VALIDATION_DATE_BEFORE') return current_schema;
-      return (current_schema as DateSchema).max(validation.value as string,validation.msg)
+      if(validation.type === 'VALIDATION_DATE_BEFORE'){
+        return (current_schema as DateSchema).max(validation.value as string,validation.msg)
+      } else { return current_schema;}
     },
   'VALIDATION_EMAIL': (validation,current_schema) => 
     {
-      if(validation.type !== 'VALIDATION_EMAIL') return current_schema;
-      return (current_schema as StringSchema).email(validation.msg)
+      if(validation.type === 'VALIDATION_EMAIL'){
+        return (current_schema as StringSchema).email(validation.msg)
+      } else { return current_schema;}
     },
   'VALIDATION_REGEXP': (validation,current_schema) =>
     {
-      if(validation.type !== 'VALIDATION_REGEXP') return current_schema;
-      const regexp = new RegExp(validation.value as string)
-      return (current_schema as StringSchema).matches(regexp,validation.msg)
+      if(validation.type === 'VALIDATION_REGEXP'){
+        const regexp = new RegExp(validation.value as string)
+        return (current_schema as StringSchema).matches(regexp,validation.msg)
+      } else { return current_schema;}
     },
   'VALIDATION_NULLABLE': (validation,current_schema) =>
     {
-      if(validation.type !== 'VALIDATION_NULLABLE') return current_schema;
-      return current_schema.nullable()
+      if(validation.type === 'VALIDATION_NULLABLE'){
+        return current_schema.nullable()
+      } else { return current_schema;}
     }
 }
 
-const defaultTypeMapper : Record<string,()=>AnySchema> = {
+export const defaultTypeMapper : Record<string,()=>AnySchema> = {
   'string': () => yup.string(),
   'number': () => yup.number(),
   'date': () => yup.date(),
@@ -56,26 +64,33 @@ const defaultTypeMapper : Record<string,()=>AnySchema> = {
   'array': () => yup.array()
 }
 
-export class SchemaTransformer {
-  private validationTransformers: Record<string,(validation:InputValidation,current_schema:AnySchema)=>AnySchema>
-  private typeMapper: Record<string,()=>AnySchema>
-  private constructor(){
-    this.validationTransformers = defaultTransformer
-    this.typeMapper = defaultTypeMapper
-  }
-  public static getInstance(){
-    return new SchemaTransformer()
+export class SchemaTransformer <T = AnySchema> {
+  private validationTransformers: Record<string,(validation:InputValidation,current_schema:T)=>T>
+  private typeMapper: Record<string,()=>T>
+  public constructor(
+    validationTransformers: Record<string,(validation:InputValidation,current_schema:T)=>T>,
+    typeMapper: Record<string,()=>T>
+  ){
+    this.validationTransformers = validationTransformers
+    this.typeMapper = typeMapper
   }
 
-  public addTransformer(type:string,transformer:(validation:InputValidation,current_schema:AnySchema)=>AnySchema){
+  public get getValidationTransformers(){
+    return this.validationTransformers
+  }
+  public get getTypeMapper(){
+    return this.typeMapper
+  }
+
+  public addTransformer(type:string,transformer:(validation:InputValidation,current_schema:T)=>T){
     this.validationTransformers[type] = transformer
   }
-  public addTypeMapper(type:string,mapper:()=>AnySchema){
+  public addTypeMapper(type:string,mapper:()=>T){
     this.typeMapper[type] = mapper
   }
 
-  public transformInput(input: Input):AnySchema{
-    let schema = this.typeMapper[input.type]()
+  public transformInput(input: Input):T{
+    let schema = this.typeMapper[input.dataType]()
     input.validation.forEach(validation => {
       const transformer = this.validationTransformers[validation.type]
       if(transformer){
@@ -85,3 +100,5 @@ export class SchemaTransformer {
     return schema
   }
 }
+
+export const getYupTransformer = () => new SchemaTransformer<AnySchema>(defaultTransformer,defaultTypeMapper)

@@ -1,0 +1,56 @@
+{
+  "_id": "1",
+  "name": "Test Block",
+  "type": "BLOCK_TEST",
+  "FRAGMENT_TYPE": "BLOCK",
+  "validation":[
+    {
+      "type": "VALIDATION_REF",
+      "ref": "BLOCK_TEST_CHILD_1",
+      "value": true,
+      "then": [],
+      "else": []
+    }
+  ],
+  "fields": [
+    {
+      "name": null,
+      "validation": null,
+      "type": "BLOCK_TEST_CHILD_1",
+      "_id": "1",
+      "FRAGMENT_TYPE": "BLOCK",
+      "fields": [
+        {
+          "name": "INPUT_TEST_CHILD_2",
+          "options": null,
+          "type": "INTPUT_TEST",
+          "validation": null,
+          "FRAGMENT_TYPE": "INPUT",
+          "dataType": "string",
+          "_id": "2",
+          "excludeFromValidation": false
+        },
+        {
+          "name": "INPUT_TEST_CHILD_2",
+          "options": null,
+          "type": "INTPUT_TEST",
+          "validation": null,
+          "FRAGMENT_TYPE": "INPUT",
+          "dataType": "string",
+          "_id": "3",
+          "excludeFromValidation": false
+        }
+      ]
+    },
+    {
+      "name": "INPUT_TEST_CHILD_2",
+      "options": null,
+      "type": "INTPUT_TEST",
+      "validation": null,
+      "FRAGMENT_TYPE": "INPUT",
+      "dataType": "string",
+      "_id": "1",
+      "excludeFromValidation": false
+    }
+  ]
+}

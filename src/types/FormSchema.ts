@@ -2,7 +2,7 @@ import {v4 as uuidv4} from 'uuid'
 import { Fragment } from './Fragment'
 import {JsonArray, JsonObject} from 'type-fest'
 import { defaultFromJSONParser } from './FromJSONParser';
-import { SchemaTransformer } from './SchemaTransformer';
+import { getYupTransformer, SchemaTransformer } from './SchemaTransformer';
 import { deepFindInputs } from '../utils/deepFindInput';
 import * as yup from 'yup'
 import type { AnySchema } from 'yup';
@@ -15,7 +15,7 @@ export type FormSchemaObject = {
   options: JsonObject;
 }
 
-const defaultSchemaTransformer = SchemaTransformer.getInstance()
+const defaultSchemaTransformer = getYupTransformer()
 
 export class FormSchema {
   public _id:string

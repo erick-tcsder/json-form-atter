@@ -1,23 +1,33 @@
-import { JsonObject, JsonValue } from "type-fest";
+import { JsonObject, JsonValue } from 'type-fest';
 
 type BaseMessageValidation = {
-  msg: string
-}
+  msg: string;
+};
 
-type SingleValueValidation = (BaseMessageValidation&{
+type SingleValueValidation = BaseMessageValidation & {
   value: JsonValue;
-})
+};
 
 type RefValidation = {
   ref: string;
   value: any;
   then: Validation[];
   else: Validation[];
-}
+};
 
-export type BlockValidation = 
-  | ({ type: 'VALIDATION_REF' } & RefValidation)
-  | ({ type: 'VALIDATION_HIDDEN' } & {});
+type defaultValidations =
+  | 'VALIDATION_REQUIRED'
+  | 'VALIDATION_NULLABLE'
+  | 'VALIDATION_EMAIL'
+  | 'VALIDATION_DATE_BEFORE'
+  | 'VALIDATION_DATE_AFTER'
+  | 'VALIDATION_MIN'
+  | 'VALIDATION_MAX'
+  | 'VALIDATION_REGEXP'
+  | 'VALIDATION_REF'
+  | 'VALIDATION_HIDDEN';
+
+export type BlockValidation = ({ type: 'VALIDATION_REF' } & RefValidation) | ({ type: 'VALIDATION_HIDDEN' } & {});
 
 export type InputValidation =
   | ({ type: 'VALIDATION_REQUIRED' } & BaseMessageValidation)
@@ -29,5 +39,9 @@ export type InputValidation =
   | ({ type: 'VALIDATION_EMAIL' } & BaseMessageValidation)
   | ({ type: 'VALIDATION_REGEXP' } & SingleValueValidation)
   | ({ type: 'VALIDATION_NULLABLE' } & BaseMessageValidation)
+  | {
+      type: `CUSTOM_VALIDATION_${string extends defaultValidations ? never : string}`;
+      options: JsonObject;
+    };
 
 export type Validation = InputValidation | BlockValidation;
