@@ -3,55 +3,55 @@ import { InputValidation } from "./Validation";
 import * as yup from 'yup'
 import { Input } from './Input';
 
-export const defaultTransformer : Record<string,(validation:InputValidation,current_schema:AnySchema)=>AnySchema> = {
-  'VALIDATION_REQUIRED': (validation,current_schema) => 
+export const defaultTransformer : Record<string,(validation:InputValidation,currentSchema:AnySchema)=>AnySchema> = {
+  'VALIDATION_REQUIRED': (validation,currentSchema) => 
     {
       if(validation.type === 'VALIDATION_REQUIRED'){
-        return current_schema.required(validation.msg)
-      } else { return current_schema;}
+        return currentSchema.required(validation.msg)
+      } else { return currentSchema;}
     },
-  'VALIDATION_MIN': (validation,current_schema) =>
+  'VALIDATION_MIN': (validation,currentSchema) =>
     {
       if(validation.type === 'VALIDATION_MIN'){
-        return (current_schema as NumberSchema).min(validation.value as number,validation.msg)
-      } else { return current_schema;}
+        return (currentSchema as NumberSchema).min(validation.value as number,validation.msg)
+      } else { return currentSchema;}
     },
-  'VALIDATION_MAX': (validation,current_schema) =>
+  'VALIDATION_MAX': (validation,currentSchema) =>
     {
       if(validation.type === 'VALIDATION_MAX'){
-        return (current_schema as NumberSchema).max(validation.value as number,validation.msg)
-      } else { return current_schema;}
+        return (currentSchema as NumberSchema).max(validation.value as number,validation.msg)
+      } else { return currentSchema;}
     },
-  'VALIDATION_DATE_AFTER': (validation,current_schema) =>
+  'VALIDATION_DATE_AFTER': (validation,currentSchema) =>
     {
       if(validation.type === 'VALIDATION_DATE_AFTER'){
-        return (current_schema as DateSchema).min(validation.value as string,validation.msg)
-      } else { return current_schema;}
+        return (currentSchema as DateSchema).min(validation.value as string,validation.msg)
+      } else { return currentSchema;}
     },
-  'VALIDATION_DATE_BEFORE': (validation,current_schema) =>
+  'VALIDATION_DATE_BEFORE': (validation,currentSchema) =>
     {
       if(validation.type === 'VALIDATION_DATE_BEFORE'){
-        return (current_schema as DateSchema).max(validation.value as string,validation.msg)
-      } else { return current_schema;}
+        return (currentSchema as DateSchema).max(validation.value as string,validation.msg)
+      } else { return currentSchema;}
     },
-  'VALIDATION_EMAIL': (validation,current_schema) => 
+  'VALIDATION_EMAIL': (validation,currentSchema) => 
     {
       if(validation.type === 'VALIDATION_EMAIL'){
-        return (current_schema as StringSchema).email(validation.msg)
-      } else { return current_schema;}
+        return (currentSchema as StringSchema).email(validation.msg)
+      } else { return currentSchema;}
     },
-  'VALIDATION_REGEXP': (validation,current_schema) =>
+  'VALIDATION_REGEXP': (validation,currentSchema) =>
     {
       if(validation.type === 'VALIDATION_REGEXP'){
         const regexp = new RegExp(validation.value as string)
-        return (current_schema as StringSchema).matches(regexp,validation.msg)
-      } else { return current_schema;}
+        return (currentSchema as StringSchema).matches(regexp,validation.msg)
+      } else { return currentSchema;}
     },
-  'VALIDATION_NULLABLE': (validation,current_schema) =>
+  'VALIDATION_NULLABLE': (validation,currentSchema) =>
     {
       if(validation.type === 'VALIDATION_NULLABLE'){
-        return current_schema.nullable()
-      } else { return current_schema;}
+        return currentSchema.nullable()
+      } else { return currentSchema;}
     }
 }
 
@@ -65,10 +65,10 @@ export const defaultTypeMapper : Record<string,()=>AnySchema> = {
 }
 
 export class SchemaTransformer <T = AnySchema> {
-  private validationTransformers: Record<string,(validation:InputValidation,current_schema:T)=>T>
+  private validationTransformers: Record<string,(validation:InputValidation,currentSchema:T)=>T>
   private typeMapper: Record<string,()=>T>
   public constructor(
-    validationTransformers: Record<string,(validation:InputValidation,current_schema:T)=>T>,
+    validationTransformers: Record<string,(validation:InputValidation,currentSchema:T)=>T>,
     typeMapper: Record<string,()=>T>
   ){
     this.validationTransformers = validationTransformers
@@ -82,7 +82,7 @@ export class SchemaTransformer <T = AnySchema> {
     return this.typeMapper
   }
 
-  public addTransformer(type:string,transformer:(validation:InputValidation,current_schema:T)=>T){
+  public addTransformer(type:string,transformer:(validation:InputValidation,currentSchema:T)=>T){
     this.validationTransformers[type] = transformer
   }
   public addTypeMapper(type:string,mapper:()=>T){

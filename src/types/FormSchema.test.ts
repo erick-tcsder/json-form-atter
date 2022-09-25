@@ -1,5 +1,6 @@
 import { Block } from './Block';
-import { FormSchema, FormYupSchema } from './FormSchema';
+import { FormSchema } from './FormSchema';
+import { FormYupSchema } from './FormYupSchema';
 import yupFormFixture from '../data/FromYup.json'
 import * as yup from 'yup'
 
