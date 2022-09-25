@@ -4,8 +4,9 @@ import type { BlockValidation, InputValidation, Validation } from './types/Valid
 import { Input } from './types/Input';
 import type { FromJSONParser } from './types/FromJSONParser';
 import { defaultFromJSONParser } from './types/FromJSONParser';
-import { FormSchema, FormSchemaObject, FormYupSchema } from './types/FormSchema';
+import { FormSchema, FormSchemaObject } from './types/FormSchema';
 import { SchemaTransformer, getYupTransformer } from './types/SchemaTransformer';
+import { FormYupSchema } from './types/FormYupSchema';
 
 export type { BlockValidation, InputValidation, Validation, FromJSONParser, FormSchemaObject };
 export { Block as BlockFragment, Fragment, Input as InputFragment };
