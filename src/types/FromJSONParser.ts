@@ -6,7 +6,7 @@ import { Input, InputObject } from './Input';
 export type FromJSONParser = Record<string, (obj: JsonObject, fromJSONParser?: FromJSONParser) => Fragment>;
 
 export const defaultFromJSONParser: FromJSONParser = {
-  BLOCK: (json : BlockObject) =>
+  BLOCK: (json: BlockObject) =>
     new Block(
       json['type'],
       json['name'],
@@ -16,7 +16,7 @@ export const defaultFromJSONParser: FromJSONParser = {
       json['validation'],
       json['_id'],
     ),
-  INPUT: (json : InputObject) => {
+  INPUT: (json: InputObject) => {
     if (!json['name']) throw new Error('Input name is required');
     if (!json['type']) throw new Error('Input type is required');
 

@@ -25,7 +25,7 @@ describe('Block class', () => {
       },
     ];
     const childBlock1 = new Block('BLOCK_TEST_CHILD_1');
-    const childBlock2 = new Input('INTPUT_TEST', 'INPUT_TEST_CHILD_2','string');
+    const childBlock2 = new Input('INTPUT_TEST', 'INPUT_TEST_CHILD_2', 'string');
     const block = new Block('BLOCK_TEST', 'Test Block', [childBlock1, childBlock2], testingValidation);
     expect(block.type).toBe('BLOCK_TEST');
     expect(block.name).toBe('Test Block');
@@ -45,7 +45,7 @@ describe('Block class', () => {
       },
     ];
     const childBlock1 = new Block('BLOCK_TEST_CHILD_1');
-    const childBlock2 = new Input('INTPUT_TEST', 'INPUT_TEST_CHILD_2','string');
+    const childBlock2 = new Input('INTPUT_TEST', 'INPUT_TEST_CHILD_2', 'string');
     const block = new Block('BLOCK_TEST', 'Test Block', [childBlock1, childBlock2], testingValidation);
 
     expect(block.toObject()).toStrictEqual(blockFixture);

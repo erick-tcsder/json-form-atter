@@ -1,8 +1,8 @@
 import { Block } from './Block';
 import { FormSchema } from './FormSchema';
 import { FormYupSchema } from './FormYupSchema';
-import yupFormFixture from '../data/FromYup.json'
-import * as yup from 'yup'
+import yupFormFixture from '../data/FromYup.json';
+import * as yup from 'yup';
 
 jest.mock('uuid', () => ({
   v4: jest.fn().mockReturnValue('1'),
@@ -12,7 +12,7 @@ describe('FormSchema', () => {
   it('should be able to instantiate', () => {
     const formSchema = new FormSchema('test');
     const formSchemaWithID = new FormSchema('test', undefined, undefined, '123');
-    expect(formSchemaWithID._id).toBe('123')
+    expect(formSchemaWithID._id).toBe('123');
     expect(formSchema).toBeInstanceOf(FormSchema);
     expect(formSchema).toBeDefined();
     expect(formSchema._id).toBe('1');
@@ -55,22 +55,22 @@ describe('FormSchema', () => {
   });
 });
 
-describe('FormYupSchema',()=>{
-  it('should be able to cast from JSON',()=>{
-    const schema = FormYupSchema.fromJSON(yupFormFixture)
-    expect(schema).toBeInstanceOf(FormYupSchema)
-    expect(schema._id).toBe('5a9b1b9e3d1e86653a79b1b9')
-    expect(schema.name).toBe('Sample Form')
-    expect(schema.fields).toHaveLength(2)
-  })
+describe('FormYupSchema', () => {
+  it('should be able to cast from JSON', () => {
+    const schema = FormYupSchema.fromJSON(yupFormFixture);
+    expect(schema).toBeInstanceOf(FormYupSchema);
+    expect(schema._id).toBe('5a9b1b9e3d1e86653a79b1b9');
+    expect(schema.name).toBe('Sample Form');
+    expect(schema.fields).toHaveLength(2);
+  });
 
-  it('should be able to cast to schema',()=>{
-    const schema = FormYupSchema.fromJSON(yupFormFixture)
-    const yupSchema = schema.toSchema()
+  it('should be able to cast to schema', () => {
+    const schema = FormYupSchema.fromJSON(yupFormFixture);
+    const yupSchema = schema.toSchema();
     const fixtureSchema = yup.object({
       email: yup.string().email('Should be an email'),
-      age: yup.number().min(0,"Should have at least 0 years").max(100,"Are you a human?")
-    })
-    expect(JSON.stringify(yupSchema)).toBe(JSON.stringify(fixtureSchema))
-  })
-})
+      age: yup.number().min(0, 'Should have at least 0 years').max(100, 'Are you a human?'),
+    });
+    expect(JSON.stringify(yupSchema)).toBe(JSON.stringify(fixtureSchema));
+  });
+});

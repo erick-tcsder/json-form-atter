@@ -12,7 +12,7 @@ export type InputObject = {
   options?: JsonObject;
   excludeFromValidation?: boolean;
   FRAGMENT_TYPE: 'INPUT';
-}
+};
 
 export class Input extends Fragment {
   public override FRAGMENT_TYPE = 'INPUT';

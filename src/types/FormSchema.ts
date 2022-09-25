@@ -13,7 +13,7 @@ export type FormSchemaObject = {
 
 export class FormSchema<T> {
   public _id: string;
-  constructor(public name: string, public fields?: Fragment[], public options?: JsonObject, _id?:string) {
+  constructor(public name: string, public fields?: Fragment[], public options?: JsonObject, _id?: string) {
     this._id = _id ?? uuidv4();
   }
 
@@ -26,10 +26,10 @@ export class FormSchema<T> {
     };
   }
 
-  public toSchema(transformer:SchemaTransformer<T>) {
-    throw new Error('Not implemented yet')
+  public toSchema(transformer: SchemaTransformer<T>) {
+    throw new Error('Not implemented yet');
   }
   public static fromJSON(json: FormSchemaObject, fromJSONParser = defaultFromJSONParser): FormSchema<any> {
-    throw new Error('Not implemented yet')
+    throw new Error('Not implemented yet');
   }
 }

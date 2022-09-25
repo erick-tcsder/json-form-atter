@@ -1,13 +1,13 @@
 {
   "name": "schema-json-form-atter",
-  "version": "0.0.0-beta.1",
+  "version": "0.1.0",
   "description": "JSON schema generator and translator intergrated for forms",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "rmbuild": "rm lib -d -r && tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",

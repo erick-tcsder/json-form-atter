@@ -1,18 +1,18 @@
-import { deepFindInputs } from "../utils/deepFindInput";
-import { FormSchema, FormSchemaObject } from "./FormSchema";
-import { Fragment } from "./Fragment";
-import { defaultFromJSONParser } from "./FromJSONParser";
-import { Input } from "./Input";
-import { getYupTransformer, SchemaTransformer } from "./SchemaTransformer";
+import { deepFindInputs } from '../utils/deepFindInput';
+import { FormSchema, FormSchemaObject } from './FormSchema';
+import { Fragment } from './Fragment';
+import { defaultFromJSONParser } from './FromJSONParser';
+import { Input } from './Input';
+import { getYupTransformer, SchemaTransformer } from './SchemaTransformer';
 import * as yup from 'yup';
-import {AnySchema} from 'yup';
-import {JsonObject} from 'type-fest'
+import { AnySchema } from 'yup';
+import { JsonObject } from 'type-fest';
 
 const defaultSchemaTransformer = getYupTransformer();
 
 export class FormYupSchema extends FormSchema<AnySchema> {
-  constructor(name: string, fields?: Fragment[], options?: JsonObject,_id?:string) {
-    super(name, fields, options,_id);
+  constructor(name: string, fields?: Fragment[], options?: JsonObject, _id?: string) {
+    super(name, fields, options, _id);
   }
   public override toSchema(transformer: SchemaTransformer<AnySchema> = defaultSchemaTransformer) {
     let validableInputs: Input[] = [];
@@ -28,9 +28,9 @@ export class FormYupSchema extends FormSchema<AnySchema> {
   }
 
   static override fromJSON(json: FormSchemaObject, fromJSONParser = defaultFromJSONParser): FormYupSchema {
-    const fields = json[`fields`].map((field) =>{
-      return fromJSONParser[field[`FRAGMENT_TYPE`]](field as JsonObject, fromJSONParser)}
-    );
+    const fields = json[`fields`].map((field) => {
+      return fromJSONParser[field[`FRAGMENT_TYPE`]](field as JsonObject, fromJSONParser);
+    });
     return new FormYupSchema(json.name, fields, json.options, json._id);
   }
 }

@@ -10,7 +10,7 @@ export type BlockObject = {
   fields?: JsonObject[];
   validation?: BlockValidation[];
   FRAGMENT_TYPE: 'BLOCK';
-}
+};
 
 export class Block extends Fragment {
   public override FRAGMENT_TYPE = 'BLOCK';
