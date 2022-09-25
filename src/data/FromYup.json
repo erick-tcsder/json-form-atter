@@ -1,0 +1,54 @@
+{
+  "_id": "5a9b1b9e3d1e86653a79b1b9",
+  "name": "Sample Form",
+  "options": {
+    "autoSubmit": true,
+    "toLink": true
+  },
+  "fields": [
+    {
+      "_id": "1",
+      "name": "email",
+      "type": "INPUT_TEXT",
+      "validation":[
+        {
+          "type": "VALIDATION_EMAIL",
+          "msg": "Should be an email"
+        }
+      ],
+      "dataType": "string",
+      "options":{
+        "placeholder": "Email",
+        "label": "Email",
+        "helperText": "please enter your email"
+      },
+      "excludeFromValidation": false,
+      "FRAGMENT_TYPE": "INPUT"
+    },
+    {
+      "_id": "2",
+      "name": "age",
+      "type": "INPUT_NUMBER",
+      "validation":[
+        {
+          "type": "VALIDATION_MIN",
+          "msg": "Should have at least 0 years",
+          "value": 0
+        },
+        {
+          "type": "VALIDATION_MAX",
+          "value": 100,
+          "msg": "Are you a human?"
+        }
+      ],
+      "dataType": "number",
+      "options":{
+        "defaultValue": 18,
+        "placeholder": "Age",
+        "label": "Age"
+      },
+      "excludeFromValidation": false,
+      "FRAGMENT_TYPE": "INPUT"
+    }
+  ]
+}

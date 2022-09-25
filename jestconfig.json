@@ -5,7 +5,7 @@
   "testRegex": "(/*.(test|spec))\\.(jsx?|tsx?)$",
   "moduleFileExtensions": ["ts", "js", "tsx", "node"],
   "collectCoverage": true,
-  "collectCoverageFrom": ["./src/**"],
+  "collectCoverageFrom": ["./src/types/**", "./src/utils/**"],
   "coverageThreshold": {
     "global": {
       "lines": 90
