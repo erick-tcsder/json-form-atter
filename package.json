@@ -4,6 +4,14 @@
   "description": "JSON schema generator and translator intergrated for forms",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erick-tcsder/json-form-atter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/erick-tcsder/json-form-atter/issues"
+  },
+  "homepage": "https://github.com/erick-tcsder/json-form-atter",
   "scripts": {
     "build": "tsc",
     "rmbuild": "rm lib -d -r && tsc",
