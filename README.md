@@ -31,6 +31,8 @@ pnpm add schema-json-form-atter
   - [`FromJSONParser`](#fromjsonparser)
 - [Validations](#validations)
 - [`SchemaTransformer`](#schematransformer)
+  - [`public addTransformer(type: string, transformer: (validation: InputValidation, currentSchema: T) => T):void`](#public-addtransformertype-string-transformer-validation-inputvalidation-currentschema-t--tvoid)
+  - [`public addTypeMapper(type: string, mapper: () => T):void`](#public-addtypemappertype-string-mapper---tvoid)
   - [`yup`](#yup)
   - [Adding other validation libraries](#adding-other-validation-libraries)
 - [`FormSchema`](#formschema)
