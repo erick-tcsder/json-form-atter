@@ -4,6 +4,14 @@
   "description": "JSON schema generator and translator intergrated for forms",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erick-tcsder/json-form-atter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/erick-tcsder/json-form-atter/issues"
+  },
+  "homepage": "https://github.com/erick-tcsder/json-form-atter",
   "scripts": {
     "build": "tsc",
     "rmbuild": "rm lib -d -r && tsc",
@@ -15,7 +23,8 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
     "test": "jest --config jestconfig.json",
-    "test:coverage": "jest --config jestconfig.json --coverage"
+    "test:coverage": "jest --config jestconfig.json --coverage",
+    "toc": "doctoc README.md --github"
   },
   "keywords": [
     "form",
