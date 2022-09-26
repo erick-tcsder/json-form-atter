@@ -23,7 +23,8 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
     "test": "jest --config jestconfig.json",
-    "test:coverage": "jest --config jestconfig.json --coverage"
+    "test:coverage": "jest --config jestconfig.json --coverage",
+    "toc": "doctoc README.md --github"
   },
   "keywords": [
     "form",
