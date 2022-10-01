@@ -10,6 +10,7 @@ export type BlockObject = {
   fields?: JsonObject[];
   validation?: BlockValidation[];
   FRAGMENT_TYPE: 'BLOCK';
+  options?: JsonObject;
 };
 
 export class Block extends Fragment {
@@ -19,6 +20,7 @@ export class Block extends Fragment {
     name?: string,
     public fields?: Fragment[],
     public validation?: BlockValidation[],
+    public options?: JsonObject,
     id?: string,
   ) {
     super(name, id);
@@ -31,6 +33,7 @@ export class Block extends Fragment {
       name: this.name ?? null,
       fields: this.fields?.map((field) => field.toObject()) ?? null,
       validation: this.validation ?? null,
+      options: this.options ?? null,
       FRAGMENT_TYPE: this.FRAGMENT_TYPE,
     };
   }

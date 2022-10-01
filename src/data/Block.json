@@ -3,6 +3,9 @@
   "name": "Test Block",
   "type": "BLOCK_TEST",
   "FRAGMENT_TYPE": "BLOCK",
+  "options": {
+    "testing-option": "this is a testing options"
+  },
   "validation":[
     {
       "type": "VALIDATION_REF",
@@ -18,6 +21,7 @@
       "fields": null,
       "validation": null,
       "type": "BLOCK_TEST_CHILD_1",
+      "options": null,
       "_id": "1",
       "FRAGMENT_TYPE": "BLOCK"
     },
