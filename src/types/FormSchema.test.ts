@@ -28,20 +28,12 @@ describe('FormSchema', () => {
         {
           FRAGMENT_TYPE: 'BLOCK',
           _id: '1',
-          fields: null,
-          name: null,
           type: 'BLOCK_TEST_CHILD_1',
-          validation: null,
-          options: null
         },
         {
           FRAGMENT_TYPE: 'BLOCK',
           _id: '1',
-          fields: null,
-          name: null,
           type: 'BLOCK_TEST_CHILD_1',
-          validation: null,
-          options: null
         },
       ],
       name: 'test',

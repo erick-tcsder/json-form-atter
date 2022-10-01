@@ -27,15 +27,17 @@ export class Block extends Fragment {
   }
 
   override toObject(): JsonObject {
-    return {
+    const res = {
       _id: this._id,
       type: this.type,
-      name: this.name ?? null,
-      fields: this.fields?.map((field) => field.toObject()) ?? null,
-      validation: this.validation ?? null,
-      options: this.options ?? null,
       FRAGMENT_TYPE: this.FRAGMENT_TYPE,
-    };
+    }
+    if(this.name) res['name'] = this.name
+    if(this.fields && this.fields.length) res['fields'] = this.fields.map((field) => field.toObject())
+    if(this.options) res['options'] = this.options
+    if(this.validation) res['validation'] = this.validation
+
+    return res
   }
 
   static override fromJSON(json: JsonObject, fromJSONParser = defaultFromJSONParser): Block {

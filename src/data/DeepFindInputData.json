@@ -14,17 +14,13 @@
   ],
   "fields": [
     {
-      "name": null,
-      "validation": null,
       "type": "BLOCK_TEST_CHILD_1",
       "_id": "1",
       "FRAGMENT_TYPE": "BLOCK",
       "fields": [
         {
           "name": "INPUT_TEST_CHILD_2",
-          "options": null,
           "type": "INTPUT_TEST",
-          "validation": null,
           "FRAGMENT_TYPE": "INPUT",
           "dataType": "string",
           "_id": "2",
@@ -32,9 +28,7 @@
         },
         {
           "name": "INPUT_TEST_CHILD_2",
-          "options": null,
           "type": "INTPUT_TEST",
-          "validation": null,
           "FRAGMENT_TYPE": "INPUT",
           "dataType": "string",
           "_id": "3",
@@ -44,9 +38,7 @@
     },
     {
       "name": "INPUT_TEST_CHILD_2",
-      "options": null,
       "type": "INTPUT_TEST",
-      "validation": null,
       "FRAGMENT_TYPE": "INPUT",
       "dataType": "string",
       "_id": "1",
