@@ -1,6 +1,6 @@
 {
   "name": "schema-json-form-atter",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "JSON schema generator and translator intergrated for forms",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

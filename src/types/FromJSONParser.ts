@@ -14,6 +14,7 @@ export const defaultFromJSONParser: FromJSONParser = {
         return defaultFromJSONParser[field['FRAGMENT_TYPE']](field, defaultFromJSONParser);
       }),
       json['validation'],
+      json['options'],
       json['_id'],
     ),
   INPUT: (json: InputObject) => {

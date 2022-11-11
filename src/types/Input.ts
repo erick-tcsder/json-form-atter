@@ -22,7 +22,7 @@ export class Input extends Fragment {
      * Name will be used as the key in the input object
      */
     name: string,
-    public dataType: 'string' | 'number' | 'boolean' | 'date' | 'array',
+    public dataType: 'string' | 'number' | 'boolean' | 'date' | 'array' | 'object',
     public validation?: InputValidation[],
     public options?: Record<string, any>,
     id?: string,
@@ -32,16 +32,18 @@ export class Input extends Fragment {
   }
 
   override toObject(): JsonObject {
-    return {
+    const res = {
       _id: this._id,
       name: this.name,
       type: this.type,
       dataType: this.dataType,
-      validation: this.validation ?? null,
-      options: this.options ?? null,
       excludeFromValidation: this.excludeFromValidation,
       FRAGMENT_TYPE: this.FRAGMENT_TYPE,
     };
+    if (this.validation) res['validation'] = this.validation;
+    if (this.options) res['options'] = this.options;
+
+    return res;
   }
 
   static override fromJSON(obj: JsonObject, fromJSONParser = defaultFromJSONParser): Input {
