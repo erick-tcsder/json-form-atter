@@ -66,7 +66,7 @@ export const defaultTransformer: Record<string, (validation: InputValidation, cu
       if (validation.type === 'VALIDATION_REF') {
         return currentSchema.when(validation.ref, {
           is: validation.value,
-          then(schema){
+          then(schema) {
             return validation.then.reduce((acc, val) => {
               return defaultTransformer[val.type](val as InputValidation, acc);
             }, schema);
@@ -80,7 +80,7 @@ export const defaultTransformer: Record<string, (validation: InputValidation, cu
       } else {
         return currentSchema;
       }
-    }
+    },
   };
 
 export const defaultTypeMapper: Record<string, () => AnySchema> = {

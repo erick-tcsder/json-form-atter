@@ -39,11 +39,11 @@ export class Input extends Fragment {
       dataType: this.dataType,
       excludeFromValidation: this.excludeFromValidation,
       FRAGMENT_TYPE: this.FRAGMENT_TYPE,
-    }
-    if(this.validation) res['validation'] = this.validation
-    if(this.options) res['options'] = this.options
-    
-    return  res
+    };
+    if (this.validation) res['validation'] = this.validation;
+    if (this.options) res['options'] = this.options;
+
+    return res;
   }
 
   static override fromJSON(obj: JsonObject, fromJSONParser = defaultFromJSONParser): Input {

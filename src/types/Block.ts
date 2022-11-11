@@ -31,13 +31,13 @@ export class Block extends Fragment {
       _id: this._id,
       type: this.type,
       FRAGMENT_TYPE: this.FRAGMENT_TYPE,
-    }
-    if(this.name) res['name'] = this.name
-    if(this.fields && this.fields.length) res['fields'] = this.fields.map((field) => field.toObject())
-    if(this.options) res['options'] = this.options
-    if(this.validation) res['validation'] = this.validation
+    };
+    if (this.name) res['name'] = this.name;
+    if (this.fields && this.fields.length) res['fields'] = this.fields.map((field) => field.toObject());
+    if (this.options) res['options'] = this.options;
+    if (this.validation) res['validation'] = this.validation;
 
-    return res
+    return res;
   }
 
   static override fromJSON(json: JsonObject, fromJSONParser = defaultFromJSONParser): Block {

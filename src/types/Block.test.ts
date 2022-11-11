@@ -32,7 +32,7 @@ describe('Block class', () => {
     expect(block.fields).toStrictEqual([childBlock1, childBlock2]);
     expect(block.validation).toStrictEqual(testingValidation);
     expect(block.FRAGMENT_TYPE).toBe('BLOCK');
-    expect(block.options).toStrictEqual({})
+    expect(block.options).toStrictEqual({});
   });
 
   it('should be able to convert to object', () => {
@@ -47,8 +47,8 @@ describe('Block class', () => {
     ];
     const childBlock1 = new Block('BLOCK_TEST_CHILD_1');
     const childBlock2 = new Input('INTPUT_TEST', 'INPUT_TEST_CHILD_2', 'string');
-    const block = new Block('BLOCK_TEST', 'Test Block', [childBlock1, childBlock2], testingValidation,{
-      "testing-option": "this is a testing options"
+    const block = new Block('BLOCK_TEST', 'Test Block', [childBlock1, childBlock2], testingValidation, {
+      'testing-option': 'this is a testing options',
     });
 
     expect(block.toObject()).toStrictEqual(blockFixture);
@@ -64,7 +64,7 @@ describe('Block class', () => {
     expect(block.fields?.[0]).toBeInstanceOf(Block);
     expect(block.fields?.[1]).toBeInstanceOf(Input);
     expect(block.options).toStrictEqual({
-      "testing-option": "this is a testing options"
-    })
+      'testing-option': 'this is a testing options',
+    });
   });
 });
