@@ -22,7 +22,7 @@ export class Input extends Fragment {
      * Name will be used as the key in the input object
      */
     name: string,
-    public dataType: 'string' | 'number' | 'boolean' | 'date' | 'array',
+    public dataType: 'string' | 'number' | 'boolean' | 'date' | 'array' | 'object',
     public validation?: InputValidation[],
     public options?: Record<string, any>,
     id?: string,
